@@ -36,7 +36,7 @@
 
   <main>
     <!-- Главный экран -->
-    <section class="hero" id="главная">
+    <section class="hero reveal reveal--instant" id="главная">
       <div class="container hero__grid">
         <div class="hero__text">
           <h1 class="hero__title">Аренда инструментов для ремонта и строительства</h1>
@@ -56,7 +56,7 @@
     </section>
 
     <!-- Каталог: данные и цены — в script.js (массив ИНСТРУМЕНТЫ) -->
-    <section class="section" id="каталог">
+    <section class="section reveal" id="каталог">
       <div class="container">
         <h2 class="section__title">Каталог инструментов</h2>
         <p class="section__intro">Выберите инструмент и оформите заявку — перезвоним для подтверждения.</p>
@@ -67,7 +67,7 @@
     </section>
 
     <!-- Как арендовать -->
-    <section class="section section--alt" id="как-арендовать">
+    <section class="section section--alt reveal" id="как-арендовать">
       <div class="container">
         <h2 class="section__title">Как арендовать</h2>
         <ol class="steps">
@@ -92,7 +92,7 @@
     </section>
 
     <!-- Условия -->
-    <section class="section" id="условия">
+    <section class="section reveal" id="условия">
       <div class="container">
         <h2 class="section__title">Условия аренды</h2>
         <div class="terms-grid">
@@ -117,7 +117,7 @@
     </section>
 
     <!-- Форма заявки -->
-    <section class="section section--form" id="заявка">
+    <section class="section section--form reveal" id="заявка">
       <div class="container">
         <h2 class="section__title">Заявка на аренду</h2>
         <p class="section__intro">Заполните форму — мы свяжемся с вами для уточнения деталей.</p>
@@ -156,13 +156,12 @@
             <button type="submit" class="btn btn--primary btn--block">Отправить заявку</button>
           </form>
 
-          <p class="form-success" id="form-success" role="status" hidden>Спасибо! Ваша заявка отправлена. Мы свяжемся с вами для подтверждения аренды.</p>
         </div>
       </div>
     </section>
 
     <!-- Контакты: телефон, адрес, режим — при смене правьте здесь и в подвале -->
-    <section class="section section--contacts" id="контакты">
+    <section class="section section--contacts reveal" id="контакты">
       <div class="container">
         <h2 class="section__title">Контакты</h2>
         <div class="contacts-grid">
@@ -184,7 +183,17 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+  <!-- Модальное окно: плавное появление после успешной отправки заявки (текст задаётся в script.js) -->
+  <div class="modal" id="modal-success" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-success-title">
+    <div class="modal__backdrop js-modal-close" tabindex="-1"></div>
+    <div class="modal__panel">
+      <h3 class="modal__title" id="modal-success-title">Заявка принята</h3>
+      <p class="modal__text" id="modal-success-text"></p>
+      <button type="button" class="btn btn--primary modal__btn js-modal-close">Понятно</button>
+    </div>
+  </div>
+
+  <footer class="site-footer reveal">
     <div class="container site-footer__inner">
       <p class="site-footer__text">© Аренда Инструментов</p>
       <p class="site-footer__text"><a href="tel:+79153194415" class="site-footer__link">+7 915 319 44 15</a></p>

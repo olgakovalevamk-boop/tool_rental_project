@@ -48,7 +48,8 @@ const ТЕКСТ_УСПЕХА =
   const toolSelect = document.getElementById("field-tool");
   const form = document.getElementById("rent-form");
   const formError = document.getElementById("form-error");
-  const formSuccess = document.getElementById("form-success");
+  const modalSuccess = document.getElementById("modal-success");
+  const modalSuccessText = document.getElementById("modal-success-text");
   const fieldName = document.getElementById("field-name");
   const fieldPhone = document.getElementById("field-phone");
   const fieldStart = document.getElementById("field-start");
@@ -73,7 +74,9 @@ const ТЕКСТ_УСПЕХА =
       const article = document.createElement("article");
       article.className = "tool-card";
       article.innerHTML = `
-        <div class="tool-card__media" aria-hidden="true">${item.плейсхолдер}</div>
+        <div class="tool-card__media" aria-hidden="true">
+          <span class="tool-card__media-inner">${item.плейсхолдер}</span>
+        </div>
         <div class="tool-card__body">
           <h3 class="tool-card__title">${escapeHtml(item.название)}</h3>
           <p class="tool-card__desc">${escapeHtml(item.описание)}</p>
@@ -157,15 +160,47 @@ const ТЕКСТ_УСПЕХА =
     formError.hidden = !msg;
   }
 
-  function hideSuccess() {
-    formSuccess.hidden = true;
-    formSuccess.textContent = ТЕКСТ_УСПЕХА;
+  /** Модальное окно успешной заявки: плавное открытие/закрытие (см. style.css .modal) */
+  let lastFocusBeforeModal = null;
+
+  function openSuccessModal() {
+    if (!modalSuccess || !modalSuccessText) return;
+    lastFocusBeforeModal = document.activeElement;
+    modalSuccessText.textContent = ТЕКСТ_УСПЕХА;
+    modalSuccess.classList.add("is-open");
+    modalSuccess.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    requestAnimationFrame(() => {
+      const closeBtn = modalSuccess.querySelector(".modal__btn");
+      if (closeBtn) closeBtn.focus();
+    });
+  }
+
+  function closeSuccessModal() {
+    if (!modalSuccess) return;
+    modalSuccess.classList.remove("is-open");
+    modalSuccess.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    if (lastFocusBeforeModal && typeof lastFocusBeforeModal.focus === "function") {
+      lastFocusBeforeModal.focus();
+    }
+    lastFocusBeforeModal = null;
+  }
+
+  if (modalSuccess) {
+    modalSuccess.querySelectorAll(".js-modal-close").forEach((el) => {
+      el.addEventListener("click", closeSuccessModal);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modalSuccess.classList.contains("is-open")) {
+        closeSuccessModal();
+      }
+    });
   }
 
   /* ---------- Отправка формы (имитация, без сервера) ---------- */
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    hideSuccess();
     showError("");
 
     if (!fieldName.value.trim()) {
@@ -203,9 +238,7 @@ const ТЕКСТ_УСПЕХА =
       toolSelect.appendChild(opt);
     });
 
-    formSuccess.textContent = ТЕКСТ_УСПЕХА;
-    formSuccess.hidden = false;
-    formSuccess.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    openSuccessModal();
   });
 
   /* ---------- Мобильное меню ---------- */
@@ -227,5 +260,53 @@ const ТЕКСТ_УСПЕХА =
     nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
   }
 
+  /**
+   * Появление секций при прокрутке: элементы с классом .reveal получают .reveal--visible
+   * Исключение: .reveal--instant обрабатывается отдельно при загрузке
+   */
+  function initScrollReveal() {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      document.querySelectorAll(".reveal").forEach((el) => el.classList.add("reveal--visible"));
+      return;
+    }
+
+    const elements = document.querySelectorAll(".reveal:not(.reveal--instant)");
+    if (!elements.length || !("IntersectionObserver" in window)) {
+      elements.forEach((el) => el.classList.add("reveal--visible"));
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("reveal--visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { root: null, rootMargin: "0px 0px -8% 0px", threshold: 0.06 }
+    );
+
+    elements.forEach((el) => io.observe(el));
+  }
+
+  /** Герой: быстрый fade-in сразу после загрузки */
+  function initHeroReveal() {
+    const hero = document.querySelector(".hero.reveal--instant");
+    if (!hero) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      hero.classList.add("reveal--visible");
+      return;
+    }
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        hero.classList.add("reveal--visible");
+      });
+    });
+  }
+
+  initHeroReveal();
   renderCatalog();
+  initScrollReveal();
 })();
