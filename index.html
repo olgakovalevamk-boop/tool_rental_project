@@ -4,14 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Аренда Инструментов — аренда строительного инструмента</title>
-  <meta name="description" content="Аренда инструментов для ремонта и строительства в Красногорске. Дрель, перфоратор, резка плитки, лазерный нивелир.">
+  <meta name="description" content="Аренда инструментов в Красногорске: плиткорез BIHUI, отбойный Makita, перфоратор Bosch, углошлифовальные машины Elitech и WORX.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="scroll-reveal.css">
 </head>
 <body>
-  <!-- Шапка: логотип, навигация, кнопка заявки -->
+  <!-- Шапка: логотип и навигация (кнопка заявки — в hero и в мобильном меню) -->
   <header class="site-header" id="верх">
     <div class="container site-header__inner">
-      <a href="#главная" class="logo">Аренда Инструментов</a>
+      <a href="#главная" class="logo">
+        <span class="logo__mark" aria-hidden="true"></span>
+        <span class="logo__text">Аренда <em>Инструментов</em></span>
+      </a>
 
       <button type="button" class="burger" aria-expanded="false" aria-controls="main-menu" aria-label="Открыть меню">
         <span class="burger__line"></span>
@@ -29,8 +36,6 @@
         </ul>
         <a href="#заявка" class="btn btn--primary nav__cta-burger">Оставить заявку</a>
       </nav>
-
-      <a href="#заявка" class="btn btn--header menu__cta">Оставить заявку</a>
     </div>
   </header>
 
@@ -39,6 +44,7 @@
     <section class="hero reveal reveal--instant" id="главная">
       <div class="container hero__grid">
         <div class="hero__text">
+          <p class="hero__badge"><span class="hero__badge-dot" aria-hidden="true"></span>Красногорск · выдача в день обращения</p>
           <h1 class="hero__title">Аренда инструментов для ремонта и строительства</h1>
           <p class="hero__lead">Берите нужный инструмент на день, неделю или месяц без лишних затрат</p>
           <div class="hero__actions">
@@ -51,15 +57,28 @@
             <li class="hero-benefits__item">Гибкие сроки аренды</li>
           </ul>
         </div>
-        <div class="hero__visual" aria-hidden="true"></div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero__visual-frame">
+            <span class="hero__visual-tag">от 500 ₽ / сутки</span>
+            <ul class="hero__visual-list">
+              <li>Плиткорез BIHUI</li>
+              <li>Отбойный Makita</li>
+              <li>Перфоратор Bosch</li>
+              <li>УШМ Elitech и WORX</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Каталог: данные и цены — в script.js (массив ИНСТРУМЕНТЫ) -->
-    <section class="section reveal" id="каталог">
+    <section class="section section--gsap" id="каталог">
       <div class="container">
-        <h2 class="section__title">Каталог инструментов</h2>
-        <p class="section__intro">Выберите инструмент и оформите заявку — перезвоним для подтверждения.</p>
+        <header class="section-header catalog-header">
+          <p class="section__eyebrow">Каталог</p>
+          <h2 class="section__title scroll-reveal">Инструменты в наличии</h2>
+          <p class="section__intro scroll-reveal">Выберите инструмент и оформите заявку — перезвоним для подтверждения.</p>
+        </header>
         <div class="catalog" id="catalog-root">
           <!-- Карточки создаёт script.js -->
         </div>
@@ -67,9 +86,12 @@
     </section>
 
     <!-- Как арендовать -->
-    <section class="section section--alt reveal" id="как-арендовать">
+    <section class="section section--alt section--gsap" id="как-арендовать">
       <div class="container">
-        <h2 class="section__title">Как арендовать</h2>
+        <header class="section-header">
+          <p class="section__eyebrow">Процесс</p>
+          <h2 class="section__title scroll-reveal">Как арендовать</h2>
+        </header>
         <ol class="steps">
           <li class="steps__item">
             <span class="steps__num">1</span>
@@ -92,9 +114,12 @@
     </section>
 
     <!-- Условия -->
-    <section class="section reveal" id="условия">
+    <section class="section section--gsap" id="условия">
       <div class="container">
-        <h2 class="section__title">Условия аренды</h2>
+        <header class="section-header">
+          <p class="section__eyebrow">Правила</p>
+          <h2 class="section__title scroll-reveal">Условия аренды</h2>
+        </header>
         <div class="terms-grid">
           <article class="terms-card">
             <h3 class="terms-card__title">Минимальный срок</h3>
@@ -119,8 +144,11 @@
     <!-- Форма заявки -->
     <section class="section section--form reveal" id="заявка">
       <div class="container">
-        <h2 class="section__title">Заявка на аренду</h2>
-        <p class="section__intro">Заполните форму — мы свяжемся с вами для уточнения деталей.</p>
+        <header class="section-header">
+          <p class="section__eyebrow">Заявка</p>
+          <h2 class="section__title">Оформить аренду</h2>
+          <p class="section__intro">Заполните форму — мы свяжемся с вами для уточнения деталей.</p>
+        </header>
 
         <div class="form-wrap">
           <form class="form" id="rent-form" novalidate>
@@ -161,29 +189,49 @@
     </section>
 
     <!-- Контакты: телефон, адрес, режим — при смене правьте здесь и в подвале -->
-    <section class="section section--contacts reveal" id="контакты">
+    <section class="section section--contacts section--gsap" id="контакты">
       <div class="container">
-        <h2 class="section__title">Контакты</h2>
+        <header class="section-header">
+          <p class="section__eyebrow">Связь</p>
+          <h2 class="section__title scroll-reveal">Контакты</h2>
+        </header>
         <div class="contacts-grid">
           <div class="contact-block">
-            <h3 class="contact-block__title">Телефон</h3>
-            <p><a href="tel:+79153194415" class="contact-link">+7 915 319 44 15</a></p>
-            <a href="tel:+79153194415" class="btn btn--primary">Позвонить</a>
+            <div class="contact-block__content">
+              <h3 class="contact-block__title">Телефон</h3>
+              <p><a href="tel:+79153194415" class="contact-link">+7 915 319 44 15</a></p>
+            </div>
+            <div class="contact-block__footer">
+              <a href="tel:+79153194415" class="btn btn--primary">Позвонить</a>
+            </div>
           </div>
           <div class="contact-block">
-            <h3 class="contact-block__title">Адрес</h3>
-            <p>МО, г. Красногорск, ул. Липовой Рощи 1к2</p>
+            <div class="contact-block__content">
+              <h3 class="contact-block__title">Адрес</h3>
+              <p>МО, г. Красногорск, ул. Липовой Рощи 1к2</p>
+            </div>
           </div>
           <div class="contact-block">
-            <h3 class="contact-block__title">Режим работы</h3>
-            <p>Ежедневно с 9:00 до 20:00</p>
+            <div class="contact-block__content">
+              <h3 class="contact-block__title">Режим работы</h3>
+              <p>Ежедневно с 9:00 до 20:00</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Модальное окно: плавное появление после успешной отправки заявки (текст задаётся в script.js) -->
+  <!-- Модальное окно: подробности инструмента (контент — script.js) -->
+  <div class="modal modal--tool" id="modal-tool" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-tool-title">
+    <div class="modal__backdrop" tabindex="-1"></div>
+    <div class="modal__panel modal__panel--wide">
+      <button type="button" class="modal__close js-tool-modal-close" aria-label="Закрыть">×</button>
+      <div id="modal-tool-content"></div>
+    </div>
+  </div>
+
+  <!-- Модальное окно: успешная отправка заявки -->
   <div class="modal" id="modal-success" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-success-title">
     <div class="modal__backdrop js-modal-close" tabindex="-1"></div>
     <div class="modal__panel">
@@ -195,11 +243,20 @@
 
   <footer class="site-footer reveal">
     <div class="container site-footer__inner">
-      <p class="site-footer__text">© Аренда Инструментов</p>
-      <p class="site-footer__text"><a href="tel:+79153194415" class="site-footer__link">+7 915 319 44 15</a></p>
+      <div class="site-footer__brand">
+        <p class="site-footer__name">Аренда Инструментов</p>
+        <p class="site-footer__text">МО, г. Красногорск · ул. Липовой Рощи 1к2</p>
+      </div>
+      <div class="site-footer__actions">
+        <a href="tel:+79153194415" class="site-footer__link">+7 915 319 44 15</a>
+        <a href="#заявка" class="btn btn--outline btn--sm">Оставить заявку</a>
+      </div>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="scroll-reveal.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

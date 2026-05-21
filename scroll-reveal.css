@@ -1,0 +1,54 @@
+/* Плавное появление заголовков при прокрутке (GSAP ScrollTrigger) */
+
+.scroll-reveal {
+  margin: 0 auto;
+  transform-origin: 50% 50%;
+  will-change: opacity, filter;
+}
+
+.section-header .scroll-reveal {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  transform: none;
+}
+
+.scroll-reveal__text {
+  display: inline;
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-align: center;
+}
+
+.scroll-reveal__word {
+  display: inline-block;
+  will-change: opacity, filter;
+}
+
+.section__intro.scroll-reveal .scroll-reveal__text {
+  font-weight: 400;
+}
+
+.section--gsap .section__eyebrow,
+.section--gsap .catalog,
+.section--gsap .steps,
+.section--gsap .terms-grid,
+.section--gsap .contacts-grid {
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .section-header .scroll-reveal {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .scroll-reveal__word {
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}
