@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Аренда Инструментов — аренда строительного инструмента</title>
-  <meta name="description" content="Аренда инструментов в Красногорске: плиткорез BIHUI, отбойный Makita, перфоратор Bosch, углошлифовальные машины Elitech и WORX.">
+  <title>Аренда инструментов в Красногорске — выдача в день обращения</title>
+  <meta name="description" content="Аренда строительного инструмента в Красногорске. Выдача в день обращения. Перфоратор, плиткорез, отбойный молоток. Звоните или пишите в WhatsApp.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
@@ -40,34 +40,43 @@
   </header>
 
   <main>
-    <!-- Главный экран -->
+    <!-- Главный экран: заявки, гео, контакты — данные hero в script.js -->
     <section class="hero reveal reveal--instant" id="главная">
-      <div class="container hero__grid">
-        <div class="hero__text">
-          <p class="hero__badge"><span class="hero__badge-dot" aria-hidden="true"></span>Красногорск · выдача в день обращения</p>
-          <h1 class="hero__title">Аренда инструментов для ремонта и строительства</h1>
-          <p class="hero__lead">Берите нужный инструмент на день, неделю или месяц без лишних затрат</p>
-          <div class="hero__actions">
-            <a href="#каталог" class="btn btn--primary">Смотреть каталог</a>
-            <a href="#заявка" class="btn btn--outline">Оставить заявку</a>
+      <div class="container hero__wrap">
+        <div class="hero__grid">
+          <div class="hero__main">
+            <p class="hero__badge">
+              <span class="hero__badge-dot" aria-hidden="true"></span>
+              Выдача инструмента в день обращения
+            </p>
+            <h1 class="hero__title">
+              Аренда инструментов
+              <span class="hero__geo">в Красногорске</span>
+            </h1>
+            <p class="hero__lead">
+              Профессиональный инструмент для ремонта и строительства — заберите сегодня после звонка или сообщения в WhatsApp
+            </p>
+            <div class="hero__actions">
+              <a href="#заявка" class="btn btn--primary">Оставить заявку</a>
+              <a href="#каталог" class="btn btn--outline">Смотреть каталог</a>
+            </div>
+            <div class="hero__contact" id="hero-contact" aria-label="Связаться для аренды">
+              <!-- Телефон и WhatsApp подставляет script.js -->
+            </div>
           </div>
-          <ul class="hero-benefits">
-            <li class="hero-benefits__item">Быстрое оформление</li>
-            <li class="hero-benefits__item">Исправный инструмент</li>
-            <li class="hero-benefits__item">Гибкие сроки аренды</li>
-          </ul>
-        </div>
-        <div class="hero__visual" aria-hidden="true">
-          <div class="hero__visual-frame">
-            <span class="hero__visual-tag">от 500 ₽ / сутки</span>
-            <ul class="hero__visual-list">
-              <li>Плиткорез BIHUI</li>
-              <li>Отбойный Makita</li>
-              <li>Перфоратор Bosch</li>
-              <li>УШМ Elitech и WORX</li>
-            </ul>
+          <div class="hero__visual" aria-hidden="true">
+            <div class="hero__visual-frame">
+              <span class="hero__visual-tag">от 500 ₽ / сутки</span>
+              <p class="hero__visual-title">В наличии сейчас</p>
+              <ul class="hero__visual-list" id="hero-tools-preview">
+                <!-- Краткий список — script.js -->
+              </ul>
+            </div>
           </div>
         </div>
+        <ul class="hero-cards" id="hero-benefits" aria-label="Почему арендуют у нас">
+          <!-- 4 карточки преимуществ — script.js -->
+        </ul>
       </div>
     </section>
 
@@ -81,6 +90,113 @@
         </header>
         <div class="catalog" id="catalog-root">
           <!-- Карточки создаёт script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Отзывы клиентов -->
+    <section class="section section--alt section--gsap" id="отзывы">
+      <div class="container">
+        <header class="section-header">
+          <p class="section__eyebrow">Отзывы</p>
+          <h2 class="section__title scroll-reveal">Отзывы клиентов</h2>
+          <p class="section__intro scroll-reveal">Что говорят те, кто уже брал инструмент у нас в Красногорске</p>
+        </header>
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div class="review-card__rating" role="img" aria-label="Оценка: 5 из 5">
+              <span class="review-stars" aria-hidden="true">
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+              </span>
+            </div>
+            <blockquote class="review-card__text">
+              <p>Брал перфоратор Bosch на выходные — выдали в тот же день, без очередей. Инструмент исправный, залог вернули сразу после возврата.</p>
+            </blockquote>
+            <footer class="review-card__author">
+              <span class="review-card__avatar" aria-hidden="true">АМ</span>
+              <cite class="review-card__name">Алексей М.</cite>
+            </footer>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__rating" role="img" aria-label="Оценка: 5 из 5">
+              <span class="review-stars" aria-hidden="true">
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+              </span>
+            </div>
+            <blockquote class="review-card__text">
+              <p>Арендовали плиткорез BIHUI на неделю — срез ровный, без сколов. Менеджер подсказал по комплектации, оформили за пару минут по WhatsApp.</p>
+            </blockquote>
+            <footer class="review-card__author">
+              <span class="review-card__avatar" aria-hidden="true">МК</span>
+              <cite class="review-card__name">Марина К.</cite>
+            </footer>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__rating" role="img" aria-label="Оценка: 5 из 5">
+              <span class="review-stars" aria-hidden="true">
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+              </span>
+            </div>
+            <blockquote class="review-card__text">
+              <p>Отбойный Makita справился с демонтажом стены в гараже. Удобно, что можно взять на сутки — не переплачиваешь за простой инструмента.</p>
+            </blockquote>
+            <footer class="review-card__author">
+              <span class="review-card__avatar" aria-hidden="true">ДВ</span>
+              <cite class="review-card__name">Дмитрий В.</cite>
+            </footer>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__rating" role="img" aria-label="Оценка: 4 из 5">
+              <span class="review-stars" aria-hidden="true">
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star">★</span>
+              </span>
+            </div>
+            <blockquote class="review-card__text">
+              <p>УШМ Elitech брал для резки металла на даче. Всё чётко по срокам и цене. Минус только в том, что в выходной народу побольше — лучше звонить заранее.</p>
+            </blockquote>
+            <footer class="review-card__author">
+              <span class="review-card__avatar" aria-hidden="true">ИС</span>
+              <cite class="review-card__name">Игорь С.</cite>
+            </footer>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__rating" role="img" aria-label="Оценка: 5 из 5">
+              <span class="review-stars" aria-hidden="true">
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+                <span class="review-stars__star review-stars__star--on">★</span>
+              </span>
+            </div>
+            <blockquote class="review-card__text">
+              <p>Делали ремонт в квартире — за месяц успели взять и перфоратор, и болгарку WORX. Всегда на связи, инструмент в хорошем состоянии. Рекомендую соседям в Красногорске.</p>
+            </blockquote>
+            <footer class="review-card__author">
+              <span class="review-card__avatar" aria-hidden="true">ЕП</span>
+              <cite class="review-card__name">Елена П.</cite>
+            </footer>
+          </article>
         </div>
       </div>
     </section>
@@ -136,6 +252,74 @@
           <article class="terms-card">
             <h3 class="terms-card__title">Состояние</h3>
             <p>Инструмент нужно вернуть в исправном состоянии</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--alt section--gsap" id="faq">
+      <div class="container">
+        <header class="section-header">
+          <p class="section__eyebrow">Вопросы</p>
+          <h2 class="section__title scroll-reveal">Частые вопросы</h2>
+          <p class="section__intro scroll-reveal">Ответы на типичные вопросы перед арендой — если осталось неясно, напишите или позвоните нам</p>
+        </header>
+        <div class="faq-accordion" id="faq-accordion">
+          <article class="faq-item">
+            <h3 class="faq-item__heading">
+              <button type="button" class="faq-item__trigger" id="faq-trigger-1" aria-expanded="false" aria-controls="faq-panel-1">
+                <span class="faq-item__question">Нужен ли паспорт?</span>
+                <span class="faq-item__icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-panel-1" role="region" aria-labelledby="faq-trigger-1" hidden>
+              <p>Да. При получении инструмента нужен документ, удостоверяющий личность — обычно паспорт гражданина РФ. Без документа выдача невозможна.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <h3 class="faq-item__heading">
+              <button type="button" class="faq-item__trigger" id="faq-trigger-2" aria-expanded="false" aria-controls="faq-panel-2">
+                <span class="faq-item__question">Какой залог?</span>
+                <span class="faq-item__icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-panel-2" role="region" aria-labelledby="faq-trigger-2" hidden>
+              <p>Размер залога зависит от инструмента — актуальные суммы указаны в карточках каталога. Залог вносится при получении и полностью возвращается после возврата исправного инструмента.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <h3 class="faq-item__heading">
+              <button type="button" class="faq-item__trigger" id="faq-trigger-3" aria-expanded="false" aria-controls="faq-panel-3">
+                <span class="faq-item__question">Можно ли продлить аренду?</span>
+                <span class="faq-item__icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-panel-3" role="region" aria-labelledby="faq-trigger-3" hidden>
+              <p>Да. Продление возможно, если инструмент не забронирован другим клиентом. Свяжитесь с нами по телефону или WhatsApp до окончания текущего срока — согласуем новые даты и стоимость.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <h3 class="faq-item__heading">
+              <button type="button" class="faq-item__trigger" id="faq-trigger-4" aria-expanded="false" aria-controls="faq-panel-4">
+                <span class="faq-item__question">Что делать при поломке?</span>
+                <span class="faq-item__icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-panel-4" role="region" aria-labelledby="faq-trigger-4" hidden>
+              <p>Сразу сообщите нам — не пытайтесь ремонтировать инструмент самостоятельно. Мы подскажем дальнейшие действия. При штатном износе претензий нет; при нарушении правил эксплуатации возможен удержание части залога.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <h3 class="faq-item__heading">
+              <button type="button" class="faq-item__trigger" id="faq-trigger-5" aria-expanded="false" aria-controls="faq-panel-5">
+                <span class="faq-item__question">Есть ли доставка?</span>
+                <span class="faq-item__icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-item__panel" id="faq-panel-5" role="region" aria-labelledby="faq-trigger-5" hidden>
+              <p>Основной способ — самовывоз из пункта выдачи в Красногорске (ул. Липовой Рощи 1к2). Доставку по городу и области можем обсудить индивидуально — уточняйте при оформлении заявки.</p>
+            </div>
           </article>
         </div>
       </div>
@@ -240,6 +424,22 @@
       <button type="button" class="btn btn--primary modal__btn js-modal-close">Понятно</button>
     </div>
   </div>
+
+  <!-- Фиксированная кнопка WhatsApp (ссылка — script.js) -->
+  <a
+    class="whatsapp-float"
+    id="whatsapp-float"
+    href="#"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Написать в WhatsApp"
+  >
+    <span class="whatsapp-float__ring" aria-hidden="true"></span>
+    <span class="whatsapp-float__btn">
+      <span class="whatsapp-float__icon" aria-hidden="true"></span>
+      <span class="whatsapp-float__label">WhatsApp</span>
+    </span>
+  </a>
 
   <footer class="site-footer reveal">
     <div class="container site-footer__inner">

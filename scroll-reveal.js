@@ -3,7 +3,7 @@
  * GSAP + ScrollTrigger: поворот блока, появление слов, размытие при прокрутке.
  */
 (function (global) {
-  const SECTION_IDS = ["каталог", "как-арендовать", "условия", "контакты"];
+  const SECTION_IDS = ["каталог", "отзывы", "как-арендовать", "условия", "faq", "контакты"];
 
   const DEFAULTS = {
     baseOpacity: 0.1,
@@ -206,10 +206,14 @@
     const id = section.id;
     if (id === "каталог") {
       initContentReveal(section, ".tool-card", "top 80%");
+    } else if (id === "отзывы") {
+      initContentReveal(section, ".review-card", "top 82%");
     } else if (id === "как-арендовать") {
       initContentReveal(section, ".steps__item", "top 82%");
     } else if (id === "условия") {
       initContentReveal(section, ".terms-card", "top 82%");
+    } else if (id === "faq") {
+      initContentReveal(section, ".faq-item", "top 85%");
     } else if (id === "контакты") {
       initContentReveal(section, ".contact-block", "top 85%");
     }
@@ -220,7 +224,7 @@
       const section = document.getElementById(id);
       if (!section) return;
       section.querySelectorAll(
-        ".scroll-reveal, .scroll-reveal__word, .section__eyebrow, .tool-card, .steps__item, .terms-card, .contact-block"
+        ".scroll-reveal, .scroll-reveal__word, .section__eyebrow, .tool-card, .review-card, .steps__item, .terms-card, .faq-item, .contact-block"
       ).forEach((el) => {
         el.style.opacity = "1";
         el.style.transform = "none";
