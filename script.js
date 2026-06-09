@@ -223,6 +223,8 @@ const ТЕКСТ_УСПЕХА =
   const fieldPhone = document.getElementById("field-phone");
   const fieldStart = document.getElementById("field-start");
   const fieldEnd = document.getElementById("field-end");
+  const fieldConsent = document.getElementById("field-consent");
+  const formSubmitBtn = document.getElementById("form-submit-btn");
   const burger = document.querySelector(".burger");
   const nav = document.querySelector(".nav");
 
@@ -557,11 +559,28 @@ const ТЕКСТ_УСПЕХА =
       showError(dates.message);
       return;
     }
+    if (!fieldConsent || !fieldConsent.checked) {
+      showError("Необходимо согласие на обработку персональных данных.");
+      fieldConsent?.focus();
+      return;
+    }
 
     form.reset();
     fillToolSelect();
+    if (fieldConsent) fieldConsent.checked = false;
+    updateFormSubmitState();
     openSuccessModal();
   });
+
+  function updateFormSubmitState() {
+    if (!formSubmitBtn || !fieldConsent) return;
+    formSubmitBtn.disabled = !fieldConsent.checked;
+  }
+
+  if (fieldConsent) {
+    fieldConsent.addEventListener("change", updateFormSubmitState);
+    updateFormSubmitState();
+  }
 
   function closeMenu() {
     if (!burger || !nav) return;

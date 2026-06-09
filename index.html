@@ -420,9 +420,14 @@
                 <label class="form__label" for="field-comment">Комментарий</label>
                 <textarea class="form__control form__control--textarea" id="field-comment" name="комментарий" rows="3" placeholder="Удобное время звонка"></textarea>
               </div>
+              <div class="form__row form__row--consent">
+                <label class="form__consent">
+                  <input class="form__checkbox" type="checkbox" id="field-consent" name="согласие_пдн" value="1" required>
+                  <span class="form__consent-text">Я согласен(а) на <a href="consent.html" target="_blank" rel="noopener noreferrer">обработку персональных данных</a> и принимаю <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Политику конфиденциальности</a> <span class="req">*</span></span>
+                </label>
+              </div>
               <p class="form__error" id="form-error" role="alert" hidden></p>
-              <button type="submit" class="btn btn--primary btn--block btn--lg">Отправить заявку</button>
-              <p class="form__hint">Нажимая кнопку, вы соглашаетесь на обратный звонок для уточнения заявки</p>
+              <button type="submit" class="btn btn--primary btn--block btn--lg" id="form-submit-btn">Отправить заявку</button>
             </form>
           </div>
         </div>
@@ -499,6 +504,10 @@
       <div class="site-footer__brand">
         <p class="site-footer__name">Аренда Инструментов · Красногорск</p>
         <p class="site-footer__text">МО, г. Красногорск · ул. Липовой Рощи 1к2</p>
+        <nav class="site-footer__legal" aria-label="Юридические документы">
+          <a href="privacy-policy.html" class="site-footer__legal-link">Политика конфиденциальности</a>
+          <a href="consent.html" class="site-footer__legal-link">Согласие на обработку ПДн</a>
+        </nav>
       </div>
       <div class="site-footer__actions">
         <a href="tel:+79153194415" class="site-footer__link" data-contact-phone>+7 915 319 44 15</a>
