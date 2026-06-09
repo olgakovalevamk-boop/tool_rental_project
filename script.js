@@ -210,6 +210,14 @@ const ПРЕИМУЩЕСТВА_HERO = [
 const ТЕКСТ_УСПЕХА =
   "Спасибо! Заявка принята. Перезвоним в течение 15 минут в рабочее время для подтверждения аренды. Если срочно — позвоните нам.";
 
+/** Тексты о расходных материалах */
+const РАСХОДНИКИ = {
+  кратко: "Расходные материалы приобретаются отдельно.",
+  полный:
+    "Расходные материалы (диски, буры, коронки, шлифовальные круги и другие комплектующие) не входят в стоимость аренды инструмента и приобретаются отдельно.",
+  форма: "Расходные материалы оплачиваются отдельно.",
+};
+
 (function () {
   const catalogRoot = document.getElementById("catalog-root");
   const toolSelect = document.getElementById("field-tool");
@@ -317,6 +325,16 @@ const ТЕКСТ_УСПЕХА =
     return `<span class="status-badge ${cls}">${escapeHtml(status)}</span>`;
   }
 
+  function renderConsumablesNotice(modifier, text) {
+    const msg = text || РАСХОДНИКИ.кратко;
+    const modClass = modifier ? ` consumables-notice--${modifier}` : "";
+    return `
+      <p class="consumables-notice${modClass}" role="note">
+        <span class="consumables-notice__icon" aria-hidden="true">ℹ</span>
+        <span class="consumables-notice__text">${escapeHtml(msg)}</span>
+      </p>`;
+  }
+
   function renderToolCard(item) {
     const imgBlock = item.изображение
       ? `<img class="tool-card__img" src="${escapeAttr(item.изображение)}" alt="${escapeAttr(item.название)}" loading="lazy" decoding="async">`
@@ -330,13 +348,16 @@ const ТЕКСТ_УСПЕХА =
         </div>
         <div class="tool-card__body">
           <h3 class="tool-card__title">${escapeHtml(item.название)}</h3>
-          <p class="tool-card__price-hero">от ${formatMoney(item.ценаЗаСутки)} <span>/ сутки</span></p>
+          <div class="tool-card__pricing">
+            <p class="tool-card__price-hero">от ${formatMoney(item.ценаЗаСутки)} <span>/ сутки</span></p>
+            <p class="tool-card__deposit-note">Залог: ${formatMoney(item.залог)} · неделя ${formatMoney(item.ценаЗаНеделю)}</p>
+            ${renderConsumablesNotice("card")}
+          </div>
           <p class="tool-card__desc">${escapeHtml(item.описание)}</p>
           <div class="tool-card__section">
             <h4 class="tool-card__subtitle">Ключевые характеристики</h4>
             ${renderSpecsList(item.характеристики, ХАРАКТЕРИСТИК_В_КАРТОЧКЕ)}
           </div>
-          <p class="tool-card__deposit-note">Залог: ${formatMoney(item.залог)} · неделя ${formatMoney(item.ценаЗаНеделю)}</p>
           <div class="tool-card__actions">
             <button type="button" class="btn btn--primary js-rent" data-tool-id="${escapeAttr(item.id)}">Забронировать</button>
             <button type="button" class="btn btn--outline js-details" data-tool-id="${escapeAttr(item.id)}">Подробнее</button>
@@ -370,6 +391,7 @@ const ТЕКСТ_УСПЕХА =
         <section class="tool-modal__block tool-modal__block--pricing">
           <h4 class="tool-modal__label">Стоимость аренды</h4>
           ${renderPricing(item, false)}
+          ${renderConsumablesNotice("modal", РАСХОДНИКИ.полный)}
         </section>
       </div>
       <footer class="tool-modal__foot">
