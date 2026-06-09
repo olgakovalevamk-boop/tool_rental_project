@@ -1098,30 +1098,6 @@ a:hover {
   font-size: 0.82rem;
 }
 
-.consumables-notice--terms {
-  padding: 0;
-  background: transparent;
-  border: none;
-  border-left: none;
-  border-radius: 0;
-  color: var(--color-text-muted);
-  font-size: 0.95rem;
-  line-height: 1.55;
-}
-
-.consumables-notice--terms .consumables-notice__icon {
-  margin-top: 0.2rem;
-}
-
-.terms-card--notice {
-  border-left-color: var(--color-stripe);
-  background: linear-gradient(135deg, #faf8f4 0%, #eef5fb 100%);
-}
-
-.terms-card--notice .terms-card__title {
-  color: var(--color-stripe);
-}
-
 .tool-card__actions {
   display: grid;
   grid-template-columns: 1fr;
@@ -1332,8 +1308,10 @@ a:hover {
 /* ---------- Условия ---------- */
 .terms-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 .terms-card {
@@ -1346,11 +1324,81 @@ a:hover {
   transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-med) ease, border-color var(--t-fast) ease;
 }
 
+.terms-card--wide {
+  grid-column: 1 / -1;
+  margin-top: 0.35rem;
+  padding: 1.15rem 1.35rem;
+  background: rgba(250, 248, 244, 0.85);
+  border: 1px dashed rgba(42, 61, 53, 0.22);
+  border-left: 3px solid rgba(42, 61, 53, 0.4);
+  box-shadow: none;
+}
+
+.terms-card__wide {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.terms-card__wide-icon {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--color-stripe);
+  border-radius: 50%;
+  margin-top: 0.1rem;
+}
+
+.terms-card__wide-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.terms-card--wide .terms-card__title {
+  margin-bottom: 0.35rem;
+  color: var(--color-stripe);
+  font-size: 0.9rem;
+}
+
+.terms-card--wide p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .terms-card:hover {
+  .terms-card:not(.terms-card--wide):hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-hover);
     border-color: rgba(232, 93, 4, 0.15);
+  }
+
+  .terms-card--wide:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(42, 61, 53, 0.28);
+  }
+}
+
+@media (max-width: 600px) {
+  .terms-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+
+  .terms-card--wide {
+    margin-top: 0.15rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .terms-grid {
+    max-width: 640px;
   }
 }
 
@@ -2406,6 +2454,10 @@ body.menu-open {
 
 .section.reveal.reveal--visible .terms-card:nth-child(4) {
   transition-delay: 0.23s;
+}
+
+.section.reveal.reveal--visible .terms-card:nth-child(5) {
+  transition-delay: 0.28s;
 }
 
 .section.reveal.reveal--visible .form-wrap {
