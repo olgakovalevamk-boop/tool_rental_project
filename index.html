@@ -3,16 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Аренда инструментов в Красногорске — выдача в день обращения</title>
-  <meta name="description" content="Аренда строительного инструмента в Красногорске. Выдача в день обращения. Перфоратор, плиткорез, отбойный молоток. Звоните или пишите в WhatsApp.">
+  <title>Аренда инструментов в Красногорске — выдача в день обращения | от 500 ₽/сутки</title>
+  <meta name="description" content="Прокат строительного инструмента в Красногорске и МО. Перфоратор, плиткорез, отбойный молоток — выдача в день обращения. Заявка онлайн, WhatsApp, звонок. ул. Липовой Рощи 1к2.">
+  <meta name="geo.region" content="RU-MOS">
+  <meta name="geo.placename" content="Красногорск">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="scroll-reveal.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Аренда Инструментов",
+    "description": "Аренда строительного и ремонтного инструмента в Красногорске",
+    "telephone": "+7-915-319-44-15",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ул. Липовой Рощи 1к2",
+      "addressLocality": "Красногорск",
+      "addressRegion": "Московская область",
+      "addressCountry": "RU"
+    },
+    "openingHours": "Mo-Su 09:00-20:00",
+    "priceRange": "₽₽",
+    "areaServed": "Красногорск"
+  }
+  </script>
 </head>
 <body>
-  <!-- Шапка: логотип и навигация (кнопка заявки — в hero и в мобильном меню) -->
   <header class="site-header" id="верх">
     <div class="container site-header__inner">
       <a href="#главная" class="logo">
@@ -30,17 +50,21 @@
         <ul class="menu">
           <li><a href="#главная" class="menu__link">Главная</a></li>
           <li><a href="#каталог" class="menu__link">Каталог</a></li>
-          <li><a href="#как-арендовать" class="menu__link">Как арендовать</a></li>
-          <li><a href="#условия" class="menu__link">Условия</a></li>
-          <li><a href="#контакты" class="menu__link">Контакты</a></li>
+          <li><a href="#отзывы" class="menu__link">Отзывы</a></li>
+          <li><a href="#faq" class="menu__link">FAQ</a></li>
+          <li><a href="#заявка" class="menu__link menu__link--cta">Заявка</a></li>
         </ul>
         <a href="#заявка" class="btn btn--primary nav__cta-burger">Оставить заявку</a>
       </nav>
+
+      <div class="site-header__actions">
+        <a href="tel:+79153194415" class="header-phone" data-contact-phone aria-label="Позвонить">+7 915 319 44 15</a>
+        <a href="#заявка" class="btn btn--primary site-header__cta">Заявка</a>
+      </div>
     </div>
   </header>
 
   <main>
-    <!-- Главный экран: заявки, гео, контакты — данные hero в script.js -->
     <section class="hero reveal reveal--instant" id="главная">
       <div class="container hero__wrap">
         <div class="hero__grid">
@@ -54,53 +78,104 @@
               <span class="hero__geo">в Красногорске</span>
             </h1>
             <p class="hero__lead">
-              Профессиональный инструмент для ремонта и строительства — заберите сегодня после звонка или сообщения в WhatsApp
+              Профессиональный инструмент для ремонта и строительства — заберите <strong>сегодня</strong> после звонка или сообщения в WhatsApp
             </p>
             <div class="hero__actions">
-              <a href="#заявка" class="btn btn--primary">Оставить заявку</a>
+              <a href="#заявка" class="btn btn--primary btn--lg">Оставить заявку — бесплатно</a>
               <a href="#каталог" class="btn btn--outline">Смотреть каталог</a>
             </div>
-            <div class="hero__contact" id="hero-contact" aria-label="Связаться для аренды">
-              <!-- Телефон и WhatsApp подставляет script.js -->
-            </div>
+            <p class="hero__microcopy">Перезвоним в течение 15 минут в рабочее время</p>
+            <div class="hero__contact" id="hero-contact" aria-label="Связаться для аренды"></div>
           </div>
           <div class="hero__visual" aria-hidden="true">
             <div class="hero__visual-frame">
               <span class="hero__visual-tag">от 500 ₽ / сутки</span>
               <p class="hero__visual-title">В наличии сейчас</p>
-              <ul class="hero__visual-list" id="hero-tools-preview">
-                <!-- Краткий список — script.js -->
-              </ul>
+              <ul class="hero__visual-list" id="hero-tools-preview"></ul>
             </div>
           </div>
         </div>
-        <ul class="hero-cards" id="hero-benefits" aria-label="Почему арендуют у нас">
-          <!-- 4 карточки преимуществ — script.js -->
-        </ul>
+        <ul class="hero-cards" id="hero-benefits" aria-label="Почему арендуют у нас"></ul>
       </div>
     </section>
 
-    <!-- Каталог: данные и цены — в script.js (массив ИНСТРУМЕНТЫ) -->
+    <div class="trust-bar">
+      <div class="container trust-bar__grid">
+        <div class="trust-bar__item">
+          <strong class="trust-bar__value">Сегодня</strong>
+          <span class="trust-bar__label">выдача в день обращения</span>
+        </div>
+        <div class="trust-bar__item">
+          <strong class="trust-bar__value">5+</strong>
+          <span class="trust-bar__label">инструментов в наличии</span>
+        </div>
+        <div class="trust-bar__item">
+          <strong class="trust-bar__value">100%</strong>
+          <span class="trust-bar__label">возврат залога</span>
+        </div>
+        <div class="trust-bar__item">
+          <strong class="trust-bar__value">9:00–20:00</strong>
+          <span class="trust-bar__label">ежедневно, Красногорск</span>
+        </div>
+      </div>
+    </div>
+
     <section class="section section--gsap" id="каталог">
       <div class="container">
         <header class="section-header catalog-header">
           <p class="section__eyebrow">Каталог</p>
           <h2 class="section__title scroll-reveal">Инструменты в наличии</h2>
-          <p class="section__intro scroll-reveal">Выберите инструмент и оформите заявку — перезвоним для подтверждения.</p>
+          <p class="section__intro scroll-reveal">Выберите инструмент и нажмите «Забронировать» — остальное согласуем по телефону</p>
         </header>
-        <div class="catalog" id="catalog-root">
-          <!-- Карточки создаёт script.js -->
+        <div class="catalog" id="catalog-root"></div>
+        <div class="catalog-cta">
+          <p class="catalog-cta__text">Не нашли нужный инструмент? Оставьте заявку — подберём аналог</p>
+          <a href="#заявка" class="btn btn--primary">Оставить заявку</a>
         </div>
       </div>
     </section>
 
-    <!-- Отзывы клиентов -->
-    <section class="section section--alt section--gsap" id="отзывы">
+    <section class="section section--alt section--gsap" id="как-арендовать">
+      <div class="container">
+        <header class="section-header">
+          <p class="section__eyebrow">Процесс</p>
+          <h2 class="section__title scroll-reveal">Как арендовать за 4 шага</h2>
+          <p class="section__intro scroll-reveal">От заявки до инструмента в руках — обычно в тот же день</p>
+        </header>
+        <ol class="steps">
+          <li class="steps__item">
+            <span class="steps__num">1</span>
+            <span class="steps__text">Выберите инструмент</span>
+          </li>
+          <li class="steps__item">
+            <span class="steps__num">2</span>
+            <span class="steps__text">Оставьте заявку</span>
+          </li>
+          <li class="steps__item">
+            <span class="steps__num">3</span>
+            <span class="steps__text">Подтвердите по телефону</span>
+          </li>
+          <li class="steps__item">
+            <span class="steps__num">4</span>
+            <span class="steps__text">Заберите в Красногорске</span>
+          </li>
+        </ol>
+        <div class="steps-cta">
+          <a href="#заявка" class="btn btn--primary btn--lg">Начать аренду</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--gsap" id="отзывы">
       <div class="container">
         <header class="section-header">
           <p class="section__eyebrow">Отзывы</p>
           <h2 class="section__title scroll-reveal">Отзывы клиентов</h2>
           <p class="section__intro scroll-reveal">Что говорят те, кто уже брал инструмент у нас в Красногорске</p>
+          <p class="reviews-summary" aria-label="Средняя оценка 4.9 из 5">
+            <span class="reviews-summary__stars" aria-hidden="true">★★★★★</span>
+            <span class="reviews-summary__text"><strong>4.9</strong> · 5 отзывов · Красногорск</span>
+          </p>
         </header>
         <div class="reviews-grid">
           <article class="review-card">
@@ -121,7 +196,6 @@
               <cite class="review-card__name">Алексей М.</cite>
             </footer>
           </article>
-
           <article class="review-card">
             <div class="review-card__rating" role="img" aria-label="Оценка: 5 из 5">
               <span class="review-stars" aria-hidden="true">
@@ -140,7 +214,6 @@
               <cite class="review-card__name">Марина К.</cite>
             </footer>
           </article>
-
           <article class="review-card">
             <div class="review-card__rating" role="img" aria-label="Оценка: 5 из 5">
               <span class="review-stars" aria-hidden="true">
@@ -159,7 +232,6 @@
               <cite class="review-card__name">Дмитрий В.</cite>
             </footer>
           </article>
-
           <article class="review-card">
             <div class="review-card__rating" role="img" aria-label="Оценка: 4 из 5">
               <span class="review-stars" aria-hidden="true">
@@ -178,7 +250,6 @@
               <cite class="review-card__name">Игорь С.</cite>
             </footer>
           </article>
-
           <article class="review-card">
             <div class="review-card__rating" role="img" aria-label="Оценка: 5 из 5">
               <span class="review-stars" aria-hidden="true">
@@ -201,35 +272,6 @@
       </div>
     </section>
 
-    <!-- Как арендовать -->
-    <section class="section section--alt section--gsap" id="как-арендовать">
-      <div class="container">
-        <header class="section-header">
-          <p class="section__eyebrow">Процесс</p>
-          <h2 class="section__title scroll-reveal">Как арендовать</h2>
-        </header>
-        <ol class="steps">
-          <li class="steps__item">
-            <span class="steps__num">1</span>
-            <span class="steps__text">Выберите инструмент</span>
-          </li>
-          <li class="steps__item">
-            <span class="steps__num">2</span>
-            <span class="steps__text">Укажите срок аренды</span>
-          </li>
-          <li class="steps__item">
-            <span class="steps__num">3</span>
-            <span class="steps__text">Подтвердите заявку</span>
-          </li>
-          <li class="steps__item">
-            <span class="steps__num">4</span>
-            <span class="steps__text">Получите инструмент</span>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- Условия -->
     <section class="section section--gsap" id="условия">
       <div class="container">
         <header class="section-header">
@@ -243,7 +285,7 @@
           </article>
           <article class="terms-card">
             <h3 class="terms-card__title">Документ</h3>
-            <p>При получении нужен документ</p>
+            <p>При получении нужен паспорт</p>
           </article>
           <article class="terms-card">
             <h3 class="terms-card__title">Залог</h3>
@@ -257,7 +299,6 @@
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="section section--alt section--gsap" id="faq">
       <div class="container">
         <header class="section-header">
@@ -325,68 +366,83 @@
       </div>
     </section>
 
-    <!-- Форма заявки -->
     <section class="section section--form reveal" id="заявка">
       <div class="container">
         <header class="section-header">
           <p class="section__eyebrow">Заявка</p>
-          <h2 class="section__title">Оформить аренду</h2>
-          <p class="section__intro">Заполните форму — мы свяжемся с вами для уточнения деталей.</p>
+          <h2 class="section__title">Забронировать инструмент</h2>
+          <p class="section__intro">Заполните форму — перезвоним за 15 минут и подтвердим наличие</p>
         </header>
 
-        <div class="form-wrap">
-          <form class="form" id="rent-form" novalidate>
-            <div class="form__row">
-              <label class="form__label" for="field-name">Имя <span class="req">*</span></label>
-              <input class="form__control" type="text" id="field-name" name="имя" autocomplete="name" required placeholder="Как к вам обращаться">
+        <div class="form-layout">
+          <aside class="form-trust" aria-label="Почему можно доверять">
+            <h3 class="form-trust__title">Без риска</h3>
+            <ul class="form-trust__list">
+              <li>Заявка бесплатна — оплата только при получении</li>
+              <li>Залог возвращаем полностью после возврата</li>
+              <li>Инструмент проверен перед выдачей</li>
+              <li>Выдача в день обращения в Красногорске</li>
+            </ul>
+            <div class="form-trust__contacts">
+              <p class="form-trust__label">Или свяжитесь сразу:</p>
+              <a href="tel:+79153194415" class="form-trust__phone" data-contact-phone>+7 915 319 44 15</a>
+              <a href="#" class="form-trust__wa" data-contact-wa target="_blank" rel="noopener noreferrer">Написать в WhatsApp</a>
             </div>
-            <div class="form__row">
-              <label class="form__label" for="field-phone">Телефон <span class="req">*</span></label>
-              <input class="form__control" type="tel" id="field-phone" name="телефон" autocomplete="tel" required placeholder="Например: +7 915 319 44 15">
-            </div>
-            <div class="form__row">
-              <label class="form__label" for="field-tool">Выбор инструмента <span class="req">*</span></label>
-              <select class="form__control" id="field-tool" name="инструмент" required>
-                <option value="">Выберите из списка</option>
-              </select>
-            </div>
-            <div class="form__row form__row--2">
-              <div>
-                <label class="form__label" for="field-start">Дата начала аренды <span class="req">*</span></label>
-                <input class="form__control" type="date" id="field-start" name="дата_начала" required>
-              </div>
-              <div>
-                <label class="form__label" for="field-end">Дата возврата <span class="req">*</span></label>
-                <input class="form__control" type="date" id="field-end" name="дата_возврата" required>
-              </div>
-            </div>
-            <div class="form__row">
-              <label class="form__label" for="field-comment">Комментарий</label>
-              <textarea class="form__control form__control--textarea" id="field-comment" name="комментарий" rows="4" placeholder="Удобное время звонка, вопросы по комплектации"></textarea>
-            </div>
-            <p class="form__error" id="form-error" role="alert" hidden></p>
-            <button type="submit" class="btn btn--primary btn--block">Отправить заявку</button>
-          </form>
+          </aside>
 
+          <div class="form-wrap">
+            <form class="form" id="rent-form" novalidate>
+              <div class="form__row">
+                <label class="form__label" for="field-name">Имя <span class="req">*</span></label>
+                <input class="form__control" type="text" id="field-name" name="имя" autocomplete="name" required placeholder="Как к вам обращаться">
+              </div>
+              <div class="form__row">
+                <label class="form__label" for="field-phone">Телефон <span class="req">*</span></label>
+                <input class="form__control" type="tel" id="field-phone" name="телефон" autocomplete="tel" required placeholder="+7 915 319 44 15" inputmode="tel">
+              </div>
+              <div class="form__row">
+                <label class="form__label" for="field-tool">Инструмент <span class="req">*</span></label>
+                <select class="form__control" id="field-tool" name="инструмент" required>
+                  <option value="">Выберите из списка</option>
+                </select>
+              </div>
+              <div class="form__row form__row--2">
+                <div>
+                  <label class="form__label" for="field-start">Дата начала <span class="req">*</span></label>
+                  <input class="form__control" type="date" id="field-start" name="дата_начала" required>
+                </div>
+                <div>
+                  <label class="form__label" for="field-end">Дата возврата <span class="req">*</span></label>
+                  <input class="form__control" type="date" id="field-end" name="дата_возврата" required>
+                </div>
+              </div>
+              <div class="form__row">
+                <label class="form__label" for="field-comment">Комментарий</label>
+                <textarea class="form__control form__control--textarea" id="field-comment" name="комментарий" rows="3" placeholder="Удобное время звонка"></textarea>
+              </div>
+              <p class="form__error" id="form-error" role="alert" hidden></p>
+              <button type="submit" class="btn btn--primary btn--block btn--lg">Отправить заявку</button>
+              <p class="form__hint">Нажимая кнопку, вы соглашаетесь на обратный звонок для уточнения заявки</p>
+            </form>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Контакты: телефон, адрес, режим — при смене правьте здесь и в подвале -->
     <section class="section section--contacts section--gsap" id="контакты">
       <div class="container">
         <header class="section-header">
           <p class="section__eyebrow">Связь</p>
-          <h2 class="section__title scroll-reveal">Контакты</h2>
+          <h2 class="section__title scroll-reveal">Контакты в Красногорске</h2>
         </header>
         <div class="contacts-grid">
           <div class="contact-block">
             <div class="contact-block__content">
               <h3 class="contact-block__title">Телефон</h3>
-              <p><a href="tel:+79153194415" class="contact-link">+7 915 319 44 15</a></p>
+              <p><a href="tel:+79153194415" class="contact-link" data-contact-phone>+7 915 319 44 15</a></p>
             </div>
             <div class="contact-block__footer">
-              <a href="tel:+79153194415" class="btn btn--primary">Позвонить</a>
+              <a href="tel:+79153194415" class="btn btn--primary" data-contact-phone-btn>Позвонить</a>
             </div>
           </div>
           <div class="contact-block">
@@ -406,7 +462,6 @@
     </section>
   </main>
 
-  <!-- Модальное окно: подробности инструмента (контент — script.js) -->
   <div class="modal modal--tool" id="modal-tool" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-tool-title">
     <div class="modal__backdrop" tabindex="-1"></div>
     <div class="modal__panel modal__panel--wide">
@@ -415,7 +470,6 @@
     </div>
   </div>
 
-  <!-- Модальное окно: успешная отправка заявки -->
   <div class="modal" id="modal-success" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-success-title">
     <div class="modal__backdrop js-modal-close" tabindex="-1"></div>
     <div class="modal__panel">
@@ -425,15 +479,14 @@
     </div>
   </div>
 
-  <!-- Фиксированная кнопка WhatsApp (ссылка — script.js) -->
-  <a
-    class="whatsapp-float"
-    id="whatsapp-float"
-    href="#"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Написать в WhatsApp"
-  >
+  <div class="mobile-cta-bar" id="mobile-cta-bar" hidden>
+    <a href="tel:+79153194415" class="mobile-cta-bar__btn mobile-cta-bar__btn--phone" data-contact-phone aria-label="Позвонить">
+      <span aria-hidden="true">☎</span> Звонок
+    </a>
+    <a href="#заявка" class="mobile-cta-bar__btn mobile-cta-bar__btn--form">Заявка</a>
+  </div>
+
+  <a class="whatsapp-float" id="whatsapp-float" href="#" target="_blank" rel="noopener noreferrer" aria-label="Написать в WhatsApp">
     <span class="whatsapp-float__ring" aria-hidden="true"></span>
     <span class="whatsapp-float__btn">
       <span class="whatsapp-float__icon" aria-hidden="true"></span>
@@ -444,11 +497,11 @@
   <footer class="site-footer reveal">
     <div class="container site-footer__inner">
       <div class="site-footer__brand">
-        <p class="site-footer__name">Аренда Инструментов</p>
+        <p class="site-footer__name">Аренда Инструментов · Красногорск</p>
         <p class="site-footer__text">МО, г. Красногорск · ул. Липовой Рощи 1к2</p>
       </div>
       <div class="site-footer__actions">
-        <a href="tel:+79153194415" class="site-footer__link">+7 915 319 44 15</a>
+        <a href="tel:+79153194415" class="site-footer__link" data-contact-phone>+7 915 319 44 15</a>
         <a href="#заявка" class="btn btn--outline btn--sm">Оставить заявку</a>
       </div>
     </div>

@@ -169,8 +169,8 @@ const ИНСТРУМЕНТЫ = [
   },
 ];
 
-/** Сколько характеристик показывать в карточке каталога */
-const ХАРАКТЕРИСТИК_В_КАРТОЧКЕ = 5;
+/** Сколько характеристик показывать в карточке каталога (CRO: меньше — быстрее решение) */
+const ХАРАКТЕРИСТИК_В_КАРТОЧКЕ = 3;
 
 /**
  * Контакты для hero, формы и блока «Контакты»
@@ -208,7 +208,7 @@ const ПРЕИМУЩЕСТВА_HERO = [
 ];
 
 const ТЕКСТ_УСПЕХА =
-  "Спасибо! Ваша заявка отправлена. Мы свяжемся с вами для подтверждения аренды.";
+  "Спасибо! Заявка принята. Перезвоним в течение 15 минут в рабочее время для подтверждения аренды. Если срочно — позвоните нам.";
 
 (function () {
   const catalogRoot = document.getElementById("catalog-root");
@@ -328,19 +328,16 @@ const ТЕКСТ_УСПЕХА =
         </div>
         <div class="tool-card__body">
           <h3 class="tool-card__title">${escapeHtml(item.название)}</h3>
+          <p class="tool-card__price-hero">от ${formatMoney(item.ценаЗаСутки)} <span>/ сутки</span></p>
           <p class="tool-card__desc">${escapeHtml(item.описание)}</p>
           <div class="tool-card__section">
-            <h4 class="tool-card__subtitle">Область применения</h4>
-            <p class="tool-card__use">${escapeHtml(item.областьПрименения)}</p>
-          </div>
-          <div class="tool-card__section">
-            <h4 class="tool-card__subtitle">Характеристики</h4>
+            <h4 class="tool-card__subtitle">Ключевые характеристики</h4>
             ${renderSpecsList(item.характеристики, ХАРАКТЕРИСТИК_В_КАРТОЧКЕ)}
           </div>
-          ${renderPricing(item, true)}
+          <p class="tool-card__deposit-note">Залог: ${formatMoney(item.залог)} · неделя ${formatMoney(item.ценаЗаНеделю)}</p>
           <div class="tool-card__actions">
+            <button type="button" class="btn btn--primary js-rent" data-tool-id="${escapeAttr(item.id)}">Забронировать</button>
             <button type="button" class="btn btn--outline js-details" data-tool-id="${escapeAttr(item.id)}">Подробнее</button>
-            <button type="button" class="btn btn--primary js-rent" data-tool-id="${escapeAttr(item.id)}">Арендовать</button>
           </div>
         </div>
       </article>`;
@@ -375,7 +372,7 @@ const ТЕКСТ_УСПЕХА =
       </div>
       <footer class="tool-modal__foot">
         <button type="button" class="btn btn--outline js-tool-modal-close">Закрыть</button>
-        <button type="button" class="btn btn--primary js-rent-modal" data-tool-id="${escapeAttr(item.id)}">Арендовать</button>
+        <button type="button" class="btn btn--primary js-rent-modal" data-tool-id="${escapeAttr(item.id)}">Забронировать</button>
       </footer>`;
   }
 
@@ -447,7 +444,15 @@ const ТЕКСТ_УСПЕХА =
     if (toolId) toolSelect.value = toolId;
     closeAllModals();
     document.getElementById("заявка").scrollIntoView({ behavior: "smooth", block: "start" });
-    setTimeout(() => toolSelect.focus(), 400);
+    setTimeout(() => {
+      if (toolId && fieldPhone && !fieldPhone.value.trim()) {
+        fieldPhone.focus();
+      } else if (fieldName && !fieldName.value.trim()) {
+        fieldName.focus();
+      } else {
+        toolSelect.focus();
+      }
+    }, 450);
   }
 
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
@@ -669,6 +674,59 @@ const ТЕКСТ_УСПЕХА =
     if (iconEl) iconEl.innerHTML = SVG_WHATSAPP;
   }
 
+  function initSiteContacts() {
+    document.querySelectorAll("[data-contact-phone]").forEach((el) => {
+      el.href = "tel:" + КОНТАКТЫ.телефонE164;
+      if (el.classList.contains("header-phone") || el.classList.contains("form-trust__phone") || el.classList.contains("site-footer__link") || el.classList.contains("contact-link")) {
+        el.textContent = КОНТАКТЫ.телефон;
+      }
+    });
+    document.querySelectorAll("[data-contact-phone-btn]").forEach((el) => {
+      el.href = "tel:" + КОНТАКТЫ.телефонE164;
+    });
+    document.querySelectorAll("[data-contact-wa]").forEach((el) => {
+      el.href = getWhatsAppHref();
+    });
+  }
+
+  function initFormCro() {
+    const today = new Date().toISOString().split("T")[0];
+    if (fieldStart) fieldStart.min = today;
+    if (fieldEnd) fieldEnd.min = today;
+    if (fieldStart && fieldEnd) {
+      fieldStart.addEventListener("change", () => {
+        fieldEnd.min = fieldStart.value || today;
+      });
+    }
+  }
+
+  function initMobileCtaBar() {
+    const bar = document.getElementById("mobile-cta-bar");
+    const hero = document.getElementById("главная");
+    if (!bar || !hero) return;
+
+    const mq = window.matchMedia("(max-width: 768px)");
+    let visible = false;
+
+    function update() {
+      if (!mq.matches) {
+        bar.hidden = true;
+        document.body.classList.remove("has-mobile-cta");
+        return;
+      }
+      const pastHero = window.scrollY > hero.offsetHeight * 0.5;
+      if (pastHero !== visible) {
+        visible = pastHero;
+        bar.hidden = !visible;
+        document.body.classList.toggle("has-mobile-cta", visible);
+      }
+    }
+
+    window.addEventListener("scroll", update, { passive: true });
+    mq.addEventListener("change", update);
+    update();
+  }
+
   function initFaqAccordion() {
     const root = document.getElementById("faq-accordion");
     if (!root) return;
@@ -720,8 +778,11 @@ const ТЕКСТ_УСПЕХА =
   }
 
   initHeroBlock();
+  initSiteContacts();
   initWhatsAppFloat();
+  initFormCro();
   initFaqAccordion();
+  initMobileCtaBar();
   initHeroReveal();
   renderCatalog();
 

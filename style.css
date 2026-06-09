@@ -212,6 +212,50 @@ a:hover {
   margin-top: 0.75rem;
 }
 
+/* Шапка: телефон + CTA (десктоп) */
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-shrink: 0;
+}
+
+.header-phone {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0.35rem 0;
+  border-bottom: 2px solid transparent;
+  transition:
+    color var(--t-fast) ease,
+    border-color var(--t-fast) ease;
+}
+
+.header-phone:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+  text-decoration: none;
+}
+
+.site-header__cta {
+  padding: 0.55rem 1rem;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.menu__link--cta {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.menu__link--cta:hover {
+  border-bottom-color: var(--color-accent);
+}
+
 /* Кнопки */
 .btn {
   display: inline-flex;
@@ -281,6 +325,11 @@ a:hover {
 .btn--block {
   width: 100%;
   margin-top: 0.5rem;
+}
+
+.btn--lg {
+  padding: 0.85rem 1.65rem;
+  font-size: 1rem;
 }
 
 /* Бургер */
@@ -417,8 +466,23 @@ a:hover {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.65rem;
   max-width: 100%;
+}
+
+.hero__microcopy {
+  margin: 0 0 1.25rem;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hero__microcopy::before {
+  content: "✓";
+  color: #2d9a5a;
+  font-weight: 700;
 }
 
 .hero__contact {
@@ -643,6 +707,42 @@ a:hover {
   }
 }
 
+/* ---------- Полоса доверия (CRO) ---------- */
+.trust-bar {
+  background: var(--color-bg-deep);
+  color: #f4f0e8;
+  border-block: 2px solid var(--color-text);
+  padding: 1.15rem 0;
+}
+
+.trust-bar__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem 1.5rem;
+}
+
+.trust-bar__item {
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+}
+
+.trust-bar__value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 800;
+  color: var(--color-accent);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.2rem;
+}
+
+.trust-bar__label {
+  display: block;
+  font-size: 0.78rem;
+  color: rgba(244, 240, 232, 0.72);
+  line-height: 1.35;
+}
+
 /* ---------- Секции ---------- */
 .section {
   padding: 3.5rem 0;
@@ -760,6 +860,28 @@ a:hover {
   }
 }
 
+.catalog-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem 1.5rem;
+  margin-top: 2.25rem;
+  padding: 1.35rem 1.5rem;
+  background: var(--color-accent-soft);
+  border: 2px dashed var(--color-accent);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.catalog-cta__text {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  max-width: 36ch;
+}
+
 .tool-card {
   min-width: 0;
   max-width: 100%;
@@ -848,6 +970,24 @@ a:hover {
   overflow-wrap: break-word;
 }
 
+.tool-card__price-hero {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.tool-card__price-hero span {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0;
+}
+
 .tool-card__desc {
   margin: 0;
   font-size: 0.92rem;
@@ -874,11 +1014,25 @@ a:hover {
   line-height: 1.45;
 }
 
+.tool-card__deposit-note {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  padding: 0.45rem 0.55rem;
+  background: rgba(20, 18, 16, 0.04);
+  border-radius: var(--radius-sm);
+}
+
 .tool-card__actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.6rem;
-  margin-top: 1rem;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.85rem;
+}
+
+.tool-card__actions .btn--primary {
+  order: -1;
 }
 
 .tool-card__actions .btn {
@@ -1070,6 +1224,12 @@ a:hover {
   font-size: 0.95rem;
 }
 
+.steps-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
 /* ---------- Условия ---------- */
 .terms-grid {
   display: grid;
@@ -1110,6 +1270,37 @@ a:hover {
 }
 
 /* ---------- Отзывы ---------- */
+.reviews-summary {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 0.75rem;
+  margin: 1rem auto 0;
+  padding: 0.55rem 1rem;
+  background: var(--color-surface-elevated);
+  border: 2px solid var(--color-text);
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 var(--color-text);
+}
+
+.reviews-summary__stars {
+  color: #e8a317;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.reviews-summary__text {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+.reviews-summary__text strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
 .reviews-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1392,9 +1583,103 @@ a:hover {
 }
 
 /* ---------- Форма ---------- */
-.form-wrap {
-  max-width: 560px;
+.form-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+  max-width: 960px;
   margin: 0 auto;
+}
+
+.form-trust {
+  position: sticky;
+  top: calc(var(--header-h) + 1rem);
+  padding: 1.5rem;
+  background: var(--color-surface-elevated);
+  border: 2px solid var(--color-text);
+  border-radius: var(--radius-lg);
+  box-shadow: 4px 4px 0 var(--color-text);
+}
+
+.form-trust__title {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.form-trust__list {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.form-trust__list li {
+  position: relative;
+  padding-left: 1.35rem;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+}
+
+.form-trust__list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #2d9a5a;
+  font-weight: 700;
+}
+
+.form-trust__contacts {
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.form-trust__label {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.form-trust__phone {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+}
+
+.form-trust__phone:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.form-trust__wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a7a45;
+  text-decoration: none;
+}
+
+.form-trust__wa:hover {
+  text-decoration: underline;
+}
+
+.form-wrap {
+  max-width: none;
+  margin: 0;
 }
 
 .form {
@@ -1452,6 +1737,14 @@ a:hover {
 .form__control--textarea {
   resize: vertical;
   min-height: 100px;
+}
+
+.form__hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.45;
 }
 
 .contacts-grid {
@@ -1615,11 +1908,29 @@ a:hover {
   .steps {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .trust-bar__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-trust {
+    position: static;
+    order: -1;
+  }
 }
 
 @media (max-width: 768px) {
   .burger {
     display: flex;
+  }
+
+  .site-header__actions {
+    display: none;
   }
 
   .nav {
@@ -1685,6 +1996,24 @@ a:hover {
 
   .hero-cards {
     grid-template-columns: 1fr;
+  }
+
+  .trust-bar__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .trust-bar__item {
+    padding: 0.15rem;
+  }
+
+  .catalog-cta {
+    flex-direction: column;
+    padding: 1.15rem;
+  }
+
+  .catalog-cta .btn {
+    width: 100%;
   }
 
   .tool-card__actions {
@@ -2124,6 +2453,66 @@ body.modal-open {
   overflow: hidden;
 }
 
+/* ---------- Мобильная панель CTA ---------- */
+.mobile-cta-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 180;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(250, 248, 244, 0.96);
+  backdrop-filter: blur(12px);
+  border-top: 2px solid var(--color-text);
+  box-shadow: 0 -8px 24px rgba(20, 18, 16, 0.12);
+}
+
+.mobile-cta-bar[hidden] {
+  display: none !important;
+}
+
+.mobile-cta-bar__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 2.75rem;
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-text);
+  transition: transform var(--t-fast) var(--ease-out);
+}
+
+.mobile-cta-bar__btn--phone {
+  background: var(--color-surface-elevated);
+  color: var(--color-text);
+}
+
+.mobile-cta-bar__btn--form {
+  background: var(--color-accent);
+  color: #fff;
+  box-shadow: 3px 3px 0 var(--color-text);
+}
+
+.mobile-cta-bar__btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+body.has-mobile-cta {
+  padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+body.has-mobile-cta .whatsapp-float {
+  bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+}
+
 /* ---------- Фиксированная кнопка WhatsApp ---------- */
 .whatsapp-float {
   position: fixed;
@@ -2217,6 +2606,12 @@ body.modal-open .whatsapp-float {
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+body.modal-open .mobile-cta-bar {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 @keyframes wa-pulse {
