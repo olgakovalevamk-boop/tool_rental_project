@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Админ-панель — Аренда Инструментов</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="logo">
+        <span class="logo__mark" aria-hidden="true"></span>
+        <span class="logo__text">Админ · <em>Каталог</em></span>
+      </a>
+      <a href="index.html" class="btn btn--outline btn--sm" id="admin-link-site">На сайт</a>
+    </div>
+  </header>
+
+  <section class="admin-login" id="admin-login">
+    <div class="admin-login__card">
+      <p class="section__eyebrow">Доступ</p>
+      <h1 class="admin-login__title">Вход в админ-панель</h1>
+      <p class="admin-login__hint">
+        Управление каталогом инструментов. Данные сохраняются в браузере (localStorage).
+        Пароль по умолчанию: <code>admin123</code> — смените после первого входа.
+      </p>
+      <form id="login-form" class="form" novalidate>
+        <p class="admin-form-error" id="login-error" role="alert" hidden></p>
+        <div class="form__row">
+          <label class="form__label" for="login-password">Пароль</label>
+          <input class="form__control" type="password" id="login-password" autocomplete="current-password" required placeholder="Введите пароль">
+        </div>
+        <button type="submit" class="btn btn--primary btn--block">Войти</button>
+      </form>
+    </div>
+  </section>
+
+  <main class="admin-app container" id="admin-app" hidden>
+    <div class="admin-toolbar">
+      <h1 class="admin-toolbar__title">Каталог инструментов</h1>
+      <div class="admin-toolbar__actions">
+        <button type="button" class="btn btn--primary" id="btn-add-tool">+ Добавить</button>
+        <button type="button" class="btn btn--outline btn--sm" id="btn-reset-defaults">Сбросить к defaults</button>
+        <button type="button" class="btn btn--outline btn--sm" id="btn-logout">Выйти</button>
+      </div>
+    </div>
+
+    <div class="admin-stats" id="admin-stats"></div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table" id="tools-table">
+        <thead>
+          <tr>
+            <th scope="col">Фото</th>
+            <th scope="col">Название</th>
+            <th scope="col">Цена / сутки</th>
+            <th scope="col">Залог</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Действия</th>
+          </tr>
+        </thead>
+        <tbody id="tools-table-body"></tbody>
+      </table>
+      <p class="admin-empty" id="tools-empty" hidden>Каталог пуст. Добавьте первый инструмент.</p>
+    </div>
+
+    <section class="admin-settings" aria-labelledby="admin-settings-title">
+      <h2 class="admin-settings__title" id="admin-settings-title">Смена пароля</h2>
+      <form id="password-form" class="form" novalidate>
+        <p class="admin-form-error" id="password-error" role="alert" hidden></p>
+        <p class="admin-form-success" id="password-success" hidden>Пароль успешно изменён.</p>
+        <div class="admin-form__grid">
+          <div class="form__row">
+            <label class="form__label" for="pwd-current">Текущий пароль</label>
+            <input class="form__control" type="password" id="pwd-current" required autocomplete="current-password">
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="pwd-new">Новый пароль</label>
+            <input class="form__control" type="password" id="pwd-new" required minlength="6" autocomplete="new-password">
+          </div>
+        </div>
+        <button type="submit" class="btn btn--outline btn--sm">Сохранить пароль</button>
+      </form>
+    </section>
+  </main>
+
+  <div class="modal admin-modal" id="tool-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="tool-modal-title">
+    <div class="modal__backdrop" id="tool-modal-backdrop"></div>
+    <div class="modal__panel modal__panel--admin">
+      <header class="admin-form__head">
+        <h2 class="admin-form__title" id="tool-modal-title">Инструмент</h2>
+        <button type="button" class="modal__close" id="tool-modal-close" aria-label="Закрыть">×</button>
+      </header>
+      <form class="admin-form form" id="tool-form" novalidate>
+        <p class="admin-form-error" id="tool-form-error" role="alert" hidden></p>
+        <input type="hidden" id="tool-edit-id" value="">
+
+        <div class="admin-form__grid">
+          <div class="form__row admin-form__full">
+            <label class="form__label" for="tool-name">Название <span class="req">*</span></label>
+            <input class="form__control" type="text" id="tool-name" required>
+          </div>
+          <div class="form__row admin-form__full">
+            <label class="form__label" for="tool-desc">Краткое описание <span class="req">*</span></label>
+            <textarea class="form__control form__control--textarea" id="tool-desc" rows="2" required></textarea>
+          </div>
+          <div class="form__row admin-form__full">
+            <label class="form__label" for="tool-desc-full">Подробное описание</label>
+            <textarea class="form__control form__control--textarea" id="tool-desc-full" rows="3"></textarea>
+          </div>
+          <div class="form__row admin-form__full">
+            <label class="form__label" for="tool-use">Область применения</label>
+            <textarea class="form__control form__control--textarea" id="tool-use" rows="2"></textarea>
+          </div>
+
+          <p class="admin-form__section-title">Стоимость и статус</p>
+
+          <div class="form__row">
+            <label class="form__label" for="tool-price-day">Цена / сутки (₽) <span class="req">*</span></label>
+            <input class="form__control" type="number" id="tool-price-day" min="0" step="1" required>
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="tool-price-week">Цена / неделя (₽)</label>
+            <input class="form__control" type="number" id="tool-price-week" min="0" step="1">
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="tool-deposit">Залог (₽) <span class="req">*</span></label>
+            <input class="form__control" type="number" id="tool-deposit" min="0" step="1" required>
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="tool-status">Статус</label>
+            <select class="form__control" id="tool-status"></select>
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="tool-placeholder">Плейсхолдер</label>
+            <input class="form__control" type="text" id="tool-placeholder" maxlength="4" placeholder="🔧">
+          </div>
+
+          <p class="admin-form__section-title">Изображение</p>
+
+          <div class="admin-image-upload admin-form__full">
+            <div id="tool-image-preview-wrap">
+              <span class="admin-image-upload__preview-fallback" id="tool-image-fallback">🔧</span>
+              <img class="admin-image-upload__preview" id="tool-image-preview" alt="" hidden>
+            </div>
+            <div class="admin-image-upload__fields">
+              <div class="form__row">
+                <label class="form__label" for="tool-image-file">Загрузить файл</label>
+                <input class="form__control" type="file" id="tool-image-file" accept="image/jpeg,image/png,image/webp,image/gif">
+              </div>
+              <div class="form__row">
+                <label class="form__label" for="tool-image-url">Или URL / путь</label>
+                <input class="form__control" type="text" id="tool-image-url" placeholder="images/Перфоратор.webp">
+              </div>
+              <p class="admin-image-upload__hint">Файл сохраняется в localStorage (сжатие до ~900 КБ). Для production используйте серверное хранилище.</p>
+            </div>
+          </div>
+
+          <p class="admin-form__section-title">Характеристики</p>
+          <div class="admin-specs" id="specs-list"></div>
+          <div class="admin-form__full">
+            <button type="button" class="btn btn--outline btn--sm" id="btn-add-spec">+ Характеристика</button>
+          </div>
+        </div>
+
+        <footer class="admin-form__foot">
+          <button type="button" class="btn btn--outline" id="tool-form-cancel">Отмена</button>
+          <button type="submit" class="btn btn--primary">Сохранить</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/tools-seed.js"></script>
+  <script src="js/catalog-store.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
