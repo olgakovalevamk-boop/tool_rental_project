@@ -16,7 +16,7 @@
     <div class="container site-header__inner">
       <a href="index.html" class="logo">
         <span class="logo__mark" aria-hidden="true"></span>
-        <span class="logo__text">Админ · <em>Каталог</em></span>
+        <span class="logo__text">Админ · <em>Панель</em></span>
       </a>
       <a href="index.html" class="btn btn--outline btn--sm" id="admin-link-site">На сайт</a>
     </div>
@@ -27,7 +27,7 @@
       <p class="section__eyebrow">Доступ</p>
       <h1 class="admin-login__title">Вход в админ-панель</h1>
       <p class="admin-login__hint">
-        Управление каталогом инструментов. Данные сохраняются в браузере (localStorage).
+        Управление каталогом и заявками. Данные сохраняются в браузере (localStorage).
         Пароль по умолчанию: <code>admin123</code> — смените после первого входа.
       </p>
       <form id="login-form" class="form" novalidate>
@@ -42,6 +42,12 @@
   </section>
 
   <main class="admin-app container" id="admin-app" hidden>
+    <nav class="admin-nav" aria-label="Разделы админ-панели">
+      <button type="button" class="admin-nav__link is-active" data-admin-view="catalog" id="admin-nav-catalog">Каталог</button>
+      <button type="button" class="admin-nav__link" data-admin-view="applications" id="admin-nav-applications">Заявки</button>
+    </nav>
+
+    <section id="admin-view-catalog" class="admin-view">
     <div class="admin-toolbar">
       <h1 class="admin-toolbar__title">Каталог инструментов</h1>
       <div class="admin-toolbar__actions">
@@ -87,6 +93,38 @@
         </div>
         <button type="submit" class="btn btn--outline btn--sm">Сохранить пароль</button>
       </form>
+    </section>
+    </section>
+
+    <section id="admin-view-applications" class="admin-view" hidden>
+      <div class="admin-toolbar">
+        <h1 class="admin-toolbar__title">Заявки на аренду</h1>
+      </div>
+
+      <div class="admin-stats" id="applications-stats"></div>
+
+      <div class="admin-search">
+        <label class="admin-search__label" for="applications-search">Поиск</label>
+        <input class="form__control admin-search__input" type="search" id="applications-search" placeholder="Имя, телефон или инструмент…" autocomplete="off">
+      </div>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table admin-table--applications" id="applications-table">
+          <thead>
+            <tr>
+              <th scope="col">Дата</th>
+              <th scope="col">Имя</th>
+              <th scope="col">Телефон</th>
+              <th scope="col">Инструмент</th>
+              <th scope="col">Комментарий</th>
+              <th scope="col">Статус</th>
+              <th scope="col">Действия</th>
+            </tr>
+          </thead>
+          <tbody id="applications-table-body"></tbody>
+        </table>
+        <p class="admin-empty" id="applications-empty" hidden>Заявок пока нет.</p>
+      </div>
     </section>
   </main>
 
@@ -177,8 +215,33 @@
     </div>
   </div>
 
+  <div class="modal admin-modal" id="application-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="application-modal-title">
+    <div class="modal__backdrop" id="application-modal-backdrop"></div>
+    <div class="modal__panel modal__panel--admin">
+      <header class="admin-form__head">
+        <h2 class="admin-form__title" id="application-modal-title">Заявка</h2>
+        <button type="button" class="modal__close" id="application-modal-close" aria-label="Закрыть">×</button>
+      </header>
+      <div class="admin-form admin-application-modal">
+        <p class="admin-form-error" id="application-form-error" role="alert" hidden></p>
+        <div id="application-modal-body"></div>
+        <div class="form__row admin-application-modal__status">
+          <label class="form__label" for="application-status">Статус заявки</label>
+          <select class="form__control" id="application-status"></select>
+        </div>
+        <footer class="admin-form__foot">
+          <button type="button" class="btn btn--outline btn--sm admin-application-modal__delete" id="application-delete">Удалить</button>
+          <button type="button" class="btn btn--outline" id="application-modal-cancel">Закрыть</button>
+          <button type="button" class="btn btn--primary" id="application-save-status">Сохранить статус</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+
   <script src="js/tools-seed.js"></script>
   <script src="js/catalog-store.js"></script>
+  <script src="js/applications-store.js"></script>
+  <script src="js/admin-applications.js"></script>
   <script src="admin.js"></script>
 </body>
 </html>

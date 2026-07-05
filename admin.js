@@ -16,8 +16,12 @@
   const imageFallback = document.getElementById("tool-image-fallback");
   const imageFileInput = document.getElementById("tool-image-file");
   const imageUrlInput = document.getElementById("tool-image-url");
+  const catalogView = document.getElementById("admin-view-catalog");
+  const applicationsView = document.getElementById("admin-view-applications");
+  const navLinks = document.querySelectorAll(".admin-nav__link");
 
   let pendingImage = null;
+  let activeView = "catalog";
 
   function formatMoney(n) {
     return new Intl.NumberFormat("ru-RU", {
@@ -186,9 +190,22 @@
     };
   }
 
+  function switchView(view) {
+    activeView = view;
+    navLinks.forEach((link) => {
+      link.classList.toggle("is-active", link.dataset.adminView === view);
+    });
+    catalogView.hidden = view !== "catalog";
+    applicationsView.hidden = view !== "applications";
+    if (view === "applications") {
+      AdminApplications.show();
+    }
+  }
+
   function showApp() {
     loginSection.hidden = true;
     appSection.hidden = false;
+    switchView(activeView);
     renderTable(CatalogStore.getTools());
   }
 
@@ -201,6 +218,10 @@
   async function bootstrap() {
     await CatalogStore.init();
     fillStatusOptions("В наличии");
+    AdminApplications.init();
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => switchView(link.dataset.adminView));
+    });
     if (CatalogStore.isAuthenticated()) {
       showApp();
     }
@@ -319,6 +340,11 @@
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && toolModal.classList.contains("is-open")) closeToolModal();
   });
+
+  // Показать раздел «Заявки» при переходе по hash
+  if (window.location.hash === "#applications") {
+    activeView = "applications";
+  }
 
   bootstrap();
 })();

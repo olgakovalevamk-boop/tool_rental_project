@@ -67,6 +67,7 @@ const РАСХОДНИКИ = {
   const fieldPhone = document.getElementById("field-phone");
   const fieldStart = document.getElementById("field-start");
   const fieldEnd = document.getElementById("field-end");
+  const fieldComment = document.getElementById("field-comment");
   const fieldConsent = document.getElementById("field-consent");
   const formSubmitBtn = document.getElementById("form-submit-btn");
   const burger = document.querySelector(".burger");
@@ -413,7 +414,7 @@ const РАСХОДНИКИ = {
     formError.hidden = !msg;
   }
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     showError("");
 
@@ -444,6 +445,26 @@ const РАСХОДНИКИ = {
     if (!fieldConsent || !fieldConsent.checked) {
       showError("Необходимо согласие на обработку персональных данных.");
       fieldConsent?.focus();
+      return;
+    }
+
+    const tool = getToolById(toolSelect.value);
+    const applicationData = {
+      имя: fieldName.value.trim(),
+      телефон: fieldPhone.value.trim(),
+      инструментId: toolSelect.value,
+      инструмент: tool ? tool.название : toolSelect.options[toolSelect.selectedIndex].textContent.trim(),
+      датаНачала: fieldStart.value,
+      датаВозврата: fieldEnd.value,
+      комментарий: fieldComment?.value.trim() || "",
+    };
+
+    try {
+      const app = ApplicationsStore.create(applicationData);
+      void TelegramNotify.sendNewApplication(app);
+    } catch (err) {
+      console.error("[Заявка] Ошибка сохранения:", err);
+      showError("Не удалось сохранить заявку. Попробуйте позже или позвоните нам.");
       return;
     }
 
